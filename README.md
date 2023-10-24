@@ -13,7 +13,7 @@ This project offers a comprehensive analysis of the Mega Millions & Powerball lo
 5. Data Visualization: Develop visual representations of the data, such as number distributions, jackpot trends, etc.
 ### Interface Plan
 1. Home Screen: The primary interface displays essential information and provides buttons linking directly to the external websites of each lottery. This ensures users have immediate access to the latest winning numbers, jackpot amounts, and draw dates for both Mega Millions and Powerball.
-2. Analysis Section: Enable users to select date ranges, view number patterns, and access various statistical tools.
+2. Popups: User can click on buttons in order to view things like most recent winning numbers, most common winning number in a specified time span, and more.
 3. Interactive Widgets: Implement buttons for updating data, drop-down menus for lottery selection, date range pickers, and more.
 ### Data Collection and Storage Plan
 1. Data Source: Use the official datasets for Mega Millions & Powerball from data.gov.
