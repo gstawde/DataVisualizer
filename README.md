@@ -17,7 +17,7 @@ This project offers a comprehensive analysis of the Mega Millions & Powerball lo
 3. Interactive Widgets: Implement buttons for updating data, drop-down menus for lottery selection, date range pickers, and more.
 ### Data Collection and Storage Plan
 1. Data Source: Use the official datasets for Mega Millions & Powerball from data.gov.
-2. Storage Strategy: Process and store the data in structured databases in CSV files, with fields indicating draw date, winning numbers, jackpot amount, and other details.
+2. Storage Strategy: Process and store the data in CSV files, modified to sort by date
 ### Data Analysis and Visualization Plan
 1. Analytical Techniques: Implement statistical methods to pinpoint patterns, compute number frequencies, and extract relevant insights.
-2. Visualization Methods: Design plots that illustrate number distributions, jackpot fluctuations, and other pertinent visual data.
+2. Visualization Methods: Use buttons and other interactive means to visualize data more efficiently. 
