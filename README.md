@@ -8,10 +8,9 @@ This project offers a comprehensive analysis of the Mega Millions & Powerball lo
 ## Project Outline/Plan
 1. Interface Development: Construct a GUI/web interface presenting historical lottery data, number trends, and advanced statistical metrics.
 2. Data Collection: Use official datasets from data.gov for Mega Millions & Powerball.
-3. Data Organization: Process and store the data in a structured manner, ensuring quick access and analysis.
+3. Data Organization: Make modifications to the CSV files to ensure a consistent structure, streamline columns for efficient querying, and optimize storage for swift data retrieval and analysis.
 4. Data Analysis: Extract patterns, calculate number frequencies, and derive other compelling statistics.
 5. Data Visualization: Develop visual representations of the data, such as number distributions, jackpot trends, etc.
-6. GitHub Documentation: Maintain an up-to-date GitHub repository, documenting each phase of the project, installation instructions, and potential areas of improvement.
 ### Interface Plan
 1. Home Screen: Showcase recent winning numbers, jackpot values, and draw dates for both lotteries.
 2. Analysis Section: Enable users to select date ranges, view number patterns, and access various statistical tools.
