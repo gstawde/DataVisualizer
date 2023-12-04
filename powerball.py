@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import ttk
 
 
-filepath = '/Users/gargitawde/Desktop/sjsu/Fall2023/CS 122/FinalProject/DataVisualizer/Lottery_Powerball_Winning_Numbers__Beginning_2010-2.csv'
+filepath = 'Lottery_Powerball_Winning_Numbers__Beginning_2010-2.csv'
 file = open(filepath)
 file_reader = csv.reader(file)
 
@@ -22,7 +22,7 @@ class Powerball:
     def __init__(self, root):
         
         root.title("Powerball")
-        root.geometry('525x350')
+        root.geometry('700x400')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -40,6 +40,7 @@ class Powerball:
         self.how_to = ttk.Label(self.frame, text=str('Scroll through the list of dates below. Select any date,\nthen click the \'Get Data\' button in order to view that date\'s\nPowerball information.'))
         self.how_to.grid(column=0, row=1, sticky=(N, W, E, S))
 
+
         # Powerball Dates
         self.listbox1 = Listbox(root)
         for x, y in enumerate(list_of_dates):
@@ -48,7 +49,7 @@ class Powerball:
 
         # Updates where cursor is in listbox
         self.update_button = ttk.Button(self.frame, text="GET DATA", command=self.update)
-        self.update_button.grid(column=1, row=1, sticky=(N, W, E, S))
+        self.update_button.grid(column=0, row=6, sticky=(N, W, E, S))
 
         # Labels that will hold data based on selected Date in listbox
         self.date = ttk.Label(self.frame, text=str('Draw Date'))
@@ -58,11 +59,11 @@ class Powerball:
         self.multiplier = ttk.Label(self.frame, text=str('Multiplier'))
         self.multiplier.grid(column=0, row=5, sticky=(N, W, E, S))
 
-        # # add a button to close the app
+        # Add a button to close the app
         self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
-        self.button_close.grid(column=1, row=0, sticky=(N, W, E, S))
+        self.button_close.grid(column=2, row=0, sticky=(N, W, E, S))
 
-    # UPDATE function
+    # Updates the labels for data corresponding to the date in the list the user has selected
     def update(self):
         index = self.listbox1.curselection()[0]
         self.date.config(text='Date: ' + data[index][0])

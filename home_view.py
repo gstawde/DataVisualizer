@@ -1,19 +1,8 @@
-import csv
 import os
 from tkinter import *
 from tkinter import ttk
 
 
-filepath = '/Users/gargitawde/Desktop/sjsu/Fall2023/CS 122/FinalProject/DataVisualizer/Lottery_Powerball_Winning_Numbers__Beginning_2010-2.csv'
-File = open(filepath)
-Reader = csv.reader(File)
-
-Data = list(Reader)
-
-# Access Data
-# list_of_dates = []
-# for x in list(range(0,len(Data))):
-#     list_of_dates.append(Data[x][0])
 
 
 class HomeView:
@@ -21,7 +10,7 @@ class HomeView:
     def __init__(self, root):
         
         root.title("New York Lottery Analysis Home View")
-        root.geometry('525x350')
+        root.geometry('500x200')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
