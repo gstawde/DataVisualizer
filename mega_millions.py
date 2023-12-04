@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import ttk
 
 
-filepath = '/Users/gargitawde/Desktop/sjsu/Fall2023/CS 122/FinalProject/DataVisualizer/Lottery_Mega_Millions_Winning_Numbers__Beginning_2002-2.csv'
+filepath = 'Lottery_Mega_Millions_Winning_Numbers__Beginning_2002-2.csv'
 file = open(filepath)
 file_reader = csv.reader(file)
 
@@ -15,14 +15,17 @@ del(data[0])
 list_of_dates = []
 for x in list(range(0,len(data))):
     list_of_dates.append(data[x][0])
-# data is in 3 columns: 'Draw Date', 'Winning Numbers', 'Mega Ball', 'Multiplier'
+list_of_mega_millions = []
+for x in list(range(0,len(data))):
+    list_of_mega_millions.append(data[x][2])
+# data is in 4 columns: 'Draw Date', 'Winning Numbers', 'Mega Ball', 'Multiplier'
 
 class Powerball:
     
     def __init__(self, root):
         
         root.title("Mega Millions")
-        root.geometry('525x350')
+        root.geometry('700x425')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -40,15 +43,12 @@ class Powerball:
         self.how_to = ttk.Label(self.frame, text=str('Scroll through the list of dates below. Select any date,\nthen click the \'Get Data\' button in order to view that date\'s\Mega Millions information.'))
         self.how_to.grid(column=0, row=1, sticky=(N, W, E, S))
 
-        # Powerball Dates
+
+        # Mega Millions Dates
         self.listbox1 = Listbox(root)
         for x, y in enumerate(list_of_dates):
             self.listbox1.insert(x,y)
         self.listbox1.grid(column=0, row=2, sticky=(N, W, E, S))
-
-        # Updates where cursor is in listbox
-        self.update_button = ttk.Button(self.frame, text="GET DATA", command=self.update)
-        self.update_button.grid(column=1, row=1, sticky=(N, W, E, S))
 
         # Labels that will hold data based on selected Date in listbox
         self.date = ttk.Label(self.frame, text=str('Draw Date'))
@@ -60,11 +60,32 @@ class Powerball:
         self.multiplier = ttk.Label(self.frame, text=str('Multiplier'))
         self.multiplier.grid(column=0, row=6, sticky=(N, W, E, S))
 
-        # # add a button to close the app
+        # Updates where cursor is in listbox
+        self.update_button = ttk.Button(self.frame, text="GET DATA", command=self.update)
+        self.update_button.grid(column=0, row=7, sticky=(N, W, E, S))
+
+        # Most common mega million number
+        self.most_common_mega_million = ttk.Label(self.frame, text=str('Most common Mega Million Number'))
+        self.most_common_mega_million.grid(column=0, row=8, sticky=(N, W, E, S))
+        self.most_common = ttk.Button(self.frame, text="MOST COMMON MEGA MILLION NUMBER", command=self.update_most_common_mega_million)
+        self.most_common.grid(column=0, row=9, sticky=(N, W, E, S))
+
+        # Add a button to close the app
         self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
         self.button_close.grid(column=1, row=0, sticky=(N, W, E, S))
 
-    # UPDATE function
+    # Updates the label to hold the most common value over the years for the mega million
+    def update_most_common_mega_million(self):
+        count = 0
+        most_common = list_of_mega_millions[0]
+        for i in list_of_mega_millions:
+            curr_frequency = list_of_mega_millions.count(i)
+            if(curr_frequency> count):
+                count = curr_frequency
+                most_common = i
+        self.most_common_mega_million.config(text=str(most_common))
+
+    # Updates the labels for data corresponding to the date in the list the user has selected
     def update(self):
         index = self.listbox1.curselection()[0]
         self.date.config(text='Date: ' + data[index][0])
@@ -72,8 +93,7 @@ class Powerball:
         self.mega_ball.config(text='Mega Ball: ' + data[index][2])
         self.multiplier.config(text='Multiplier: ' + data[index][3])
         return None
-
-        
+      
 
 
 root = Tk()
