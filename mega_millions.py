@@ -13,19 +13,25 @@ del(data[0])
 
 # Access Data
 list_of_dates = []
+list_of_mega_millions = []
+list_of_winning_numbers = []
+
 for x in list(range(0,len(data))):
     list_of_dates.append(data[x][0])
-list_of_mega_millions = []
-for x in list(range(0,len(data))):
     list_of_mega_millions.append(data[x][2])
+    split_vals = data[x][1].split()
+    for i in range(0, len(split_vals)):
+        list_of_winning_numbers.append(split_vals[i])
 # data is in 4 columns: 'Draw Date', 'Winning Numbers', 'Mega Ball', 'Multiplier'
+
+
 
 class Powerball:
     
     def __init__(self, root):
         
         root.title("Mega Millions")
-        root.geometry('700x425')
+        root.geometry('700x500')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -64,15 +70,32 @@ class Powerball:
         self.update_button = ttk.Button(self.frame, text="GET DATA", command=self.update)
         self.update_button.grid(column=0, row=7, sticky=(N, W, E, S))
 
+        # Most common winning number
+        self.most_common_winning_number = ttk.Label(self.frame, text=str('Most common Winning Number'))
+        self.most_common_winning_number.grid(column=0, row=8, sticky=(N, W, E, S))
+        self.most_common_winning = ttk.Button(self.frame, text="MOST COMMON WINNING NUMBER", command=self.update_most_common_winning)
+        self.most_common_winning.grid(column=0, row=9, sticky=(N, W, E, S))
+
         # Most common mega million number
         self.most_common_mega_million = ttk.Label(self.frame, text=str('Most common Mega Million Number'))
-        self.most_common_mega_million.grid(column=0, row=8, sticky=(N, W, E, S))
+        self.most_common_mega_million.grid(column=0, row=10, sticky=(N, W, E, S))
         self.most_common = ttk.Button(self.frame, text="MOST COMMON MEGA MILLION NUMBER", command=self.update_most_common_mega_million)
-        self.most_common.grid(column=0, row=9, sticky=(N, W, E, S))
+        self.most_common.grid(column=0, row=11, sticky=(N, W, E, S))
 
         # Add a button to close the app
         self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
         self.button_close.grid(column=1, row=0, sticky=(N, W, E, S))
+
+    # Updates the label to hold the most common value over the years for a winning number
+    def update_most_common_winning(self):
+        count = 0
+        most_common = list_of_winning_numbers[0]
+        for i in list_of_winning_numbers:
+            curr_frequency = list_of_winning_numbers.count(i)
+            if(curr_frequency> count):
+                count = curr_frequency
+                most_common = i
+        self.most_common_winning_number.config(text=str(most_common))
 
     # Updates the label to hold the most common value over the years for the mega million
     def update_most_common_mega_million(self):
