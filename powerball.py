@@ -3,6 +3,8 @@ import os
 from tkinter import *
 from tkinter import ttk
 from matplotlib import pyplot as plt
+from tkmacosx import Button
+import tkinter.font as tkFont
 
 filepath = 'Lottery_Powerball_Winning_Numbers__Beginning_2010-2.csv'
 file = open(filepath)
@@ -28,7 +30,7 @@ class Powerball:
     def __init__(self, root):
         
         root.title("Powerball")
-        root.geometry('700x700')
+        root.geometry('700x450')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -41,9 +43,9 @@ class Powerball:
         self.frame.columnconfigure(0, weight=1)
 
         # Window Title and usage instructions
-        self.label = ttk.Label(self.frame, text=str('Powerball Data'))
+        self.label = ttk.Label(self.frame, text=str('Powerball Data'), font=('Times New Roman', 26, 'bold'))
         self.label.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.how_to = ttk.Label(self.frame, text=str('Scroll through the list of dates below. Select any date,\nthen click the \'Get Data\' button in order to view that date\'s\nPowerball information.'))
+        self.how_to = ttk.Label(self.frame, text=str('Scroll through the list of dates below. Select any date,then click the \'Get Data\' button\nin order to view that date\'s Powerball information.\n'))
         self.how_to.grid(column=0, row=1, sticky=(N, W, E, S))
 
         # Powerball Dates
@@ -53,7 +55,7 @@ class Powerball:
         self.listbox1.grid(column=0, row=2, sticky=(N, W, E, S))
 
         # Updates where cursor is in listbox
-        self.update_button = ttk.Button(self.frame, text="GET DATA", command=self.update)
+        self.update_button = Button(self.frame, text="GET DATA", bg='orange', fg='white', command=self.update)
         self.update_button.grid(column=0, row=6, sticky=(N, W, E, S))
 
         # Labels that will hold data based on selected Date in listbox
@@ -65,11 +67,11 @@ class Powerball:
         self.multiplier.grid(column=0, row=5, sticky=(N, W, E, S))
 
         # Frequency Data Window
-        self.button_new_window = ttk.Button(self.frame, text="Common Winning Numbers", command=self.powerball_freq_window)
+        self.button_new_window = Button(self.frame, text="Common Winning Numbers", bg='green', fg='white', command=self.powerball_freq_window)
         self.button_new_window.grid(column=0, row=12, sticky=(N, W, E, S))
 
         # Add a button to close the app
-        self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
+        self.button_close = Button(self.frame, text="EXIT", bg='red', fg='white', command=root.destroy)
         self.button_close.grid(column=2, row=0, sticky=(N, W, E, S))
 
     # Powerball Frequency Graph Window
