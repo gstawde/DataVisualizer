@@ -13,8 +13,13 @@ del(data[0])
 
 # Access Data
 list_of_dates = []
+list_of_winning_numbers = []
+
 for x in list(range(0,len(data))):
     list_of_dates.append(data[x][0])
+    split_vals = data[x][1].split()
+    for i in range(0, len(split_vals)):
+        list_of_winning_numbers.append(split_vals[i])
 # data is in 3 columns: date, numbers, multiplier
 
 class Powerball:
@@ -59,9 +64,26 @@ class Powerball:
         self.multiplier = ttk.Label(self.frame, text=str('Multiplier'))
         self.multiplier.grid(column=0, row=5, sticky=(N, W, E, S))
 
+        # Most common winning number
+        self.most_common_winning_number = ttk.Label(self.frame, text=str('Most common Winning Number'))
+        self.most_common_winning_number.grid(column=0, row=8, sticky=(N, W, E, S))
+        self.most_common_winning = ttk.Button(self.frame, text="MOST COMMON WINNING NUMBER", command=self.update_most_common_winning)
+        self.most_common_winning.grid(column=0, row=9, sticky=(N, W, E, S))
+
         # Add a button to close the app
         self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
         self.button_close.grid(column=2, row=0, sticky=(N, W, E, S))
+
+    # Updates the label to hold the most common value over the years for a winning number
+    def update_most_common_winning(self):
+        count = 0
+        most_common = list_of_winning_numbers[0]
+        for i in list_of_winning_numbers:
+            curr_frequency = list_of_winning_numbers.count(i)
+            if(curr_frequency> count):
+                count = curr_frequency
+                most_common = i
+        self.most_common_winning_number.config(text=str(most_common))
 
     # Updates the labels for data corresponding to the date in the list the user has selected
     def update(self):
