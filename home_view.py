@@ -1,13 +1,14 @@
 import os
 from tkinter import *
 from tkinter import ttk
+from tkmacosx import Button
 
 class HomeView:
     
     def __init__(self, root):
         
         root.title("New York Lottery Analysis Home View")
-        root.geometry('500x200')
+        root.geometry('500x300')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -23,18 +24,17 @@ class HomeView:
         label.grid(column=0, row=0, sticky=(N, W, E, S))
 
         # Powerball Window
-        self.button_new_window = ttk.Button(self.frame, text="POWERBALL", command=self.powerball_window)
+        self.button_new_window = Button(self.frame, text="POWERBALL", bg='orange', fg='white', command=self.powerball_window)
         self.button_new_window.grid(column=0, row=1, sticky=(N, W, E, S))
 
         # Mega Millions Window
-        self.button_new_window = ttk.Button(self.frame, text="MEGA MILLIONS", command=self.mega_millions_window)
+        self.button_new_window = Button(self.frame, text="MEGA MILLIONS", bg='blue', fg='white', command=self.mega_millions_window)
         self.button_new_window.grid(column=0, row=2, sticky=(N, W, E, S))
 
-        # add a button to close the app
-        self.button_close = ttk.Button(self.frame,
-                                          text="EXIT", command=root.destroy)
+        # Add a button to close the app
+        self.button_close = Button(self.frame, text="EXIT", bg='red', fg='white', command=root.destroy)
         self.button_close.grid(column=0, row=3, sticky=(N, W, E, S))
-        
+
 
     # POWERBALL Window
     def powerball_window(self):

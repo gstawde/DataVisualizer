@@ -2,6 +2,7 @@ import csv
 import os
 from tkinter import *
 from tkinter import ttk
+from tkmacosx import Button
 
 
 filepath = 'Lottery_Mega_Millions_Winning_Numbers__Beginning_2002-2.csv'
@@ -31,7 +32,7 @@ class Powerball:
     def __init__(self, root):
         
         root.title("Mega Millions")
-        root.geometry('700x500')
+        root.geometry('700x450')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -44,7 +45,7 @@ class Powerball:
         self.frame.columnconfigure(0, weight=1)
 
         # Window Title and usage instructions
-        self.label = ttk.Label(self.frame, text=str('Mega Millions Data'))
+        self.label = ttk.Label(self.frame, text=str('Mega Millions Data'), font=('Times New Roman', 26, 'bold'))
         self.label.grid(column=0, row=0, sticky=(N, W, E, S))
         self.how_to = ttk.Label(self.frame, text=str('Scroll through the list of dates below. Select any date,\nthen click the \'Get Data\' button in order to view that date\'s\Mega Millions information.'))
         self.how_to.grid(column=0, row=1, sticky=(N, W, E, S))
@@ -67,22 +68,22 @@ class Powerball:
         self.multiplier.grid(column=0, row=6, sticky=(N, W, E, S))
 
         # Updates where cursor is in listbox
-        self.update_button = ttk.Button(self.frame, text="GET DATA", command=self.update)
+        self.update_button = Button(self.frame, text="GET DATA", bg='blue', fg='white', command=self.update)
         self.update_button.grid(column=0, row=7, sticky=(N, W, E, S))
 
         # Most common mega million number
         self.most_common_mega_million = ttk.Label(self.frame, text=str('Most Common Mega Million Number'))
         self.most_common_mega_million.grid(column=0, row=8, sticky=(N, W, E, S))
-        self.most_common = ttk.Button(self.frame, text="MOST COMMON MEGA MILLION NUMBER", command=self.update_most_common_mega_million)
+        self.most_common = Button(self.frame, text="MOST COMMON MEGA MILLION NUMBER", bg='blue', fg='white', command=self.update_most_common_mega_million)
         self.most_common.grid(column=0, row=9, sticky=(N, W, E, S))
 
         # Frequency Data Window
-        self.button_new_window = ttk.Button(self.frame, text="Common Winning Numbers", command=self.megamillions_freq_window)
+        self.button_new_window = Button(self.frame, text="Common Winning Numbers", bg='green', fg='white', command=self.megamillions_freq_window)
         self.button_new_window.grid(column=0, row=10, sticky=(N, W, E, S))
 
         # Add a button to close the app
-        self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
-        self.button_close.grid(column=1, row=0, sticky=(N, W, E, S))
+        self.button_close = Button(self.frame, text="EXIT", bg='red', fg='white', command=root.destroy)
+        self.button_close.grid(column=2, row=0, sticky=(N, W, E, S))
 
     # Mega Millions Frequency Graph Window
     def megamillions_freq_window(self):
