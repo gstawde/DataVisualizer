@@ -2,7 +2,7 @@ import csv
 import os
 from tkinter import *
 from tkinter import ttk
-
+from matplotlib import pyplot as plt
 
 filepath = 'Lottery_Powerball_Winning_Numbers__Beginning_2010-2.csv'
 file = open(filepath)
@@ -20,6 +20,7 @@ for x in list(range(0,len(data))):
     split_vals = data[x][1].split()
     for i in range(0, len(split_vals)):
         list_of_winning_numbers.append(split_vals[i])
+
 # data is in 3 columns: date, numbers, multiplier
 
 class Powerball:
@@ -27,7 +28,7 @@ class Powerball:
     def __init__(self, root):
         
         root.title("Powerball")
-        root.geometry('700x400')
+        root.geometry('700x700')
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -44,7 +45,6 @@ class Powerball:
         self.label.grid(column=0, row=0, sticky=(N, W, E, S))
         self.how_to = ttk.Label(self.frame, text=str('Scroll through the list of dates below. Select any date,\nthen click the \'Get Data\' button in order to view that date\'s\nPowerball information.'))
         self.how_to.grid(column=0, row=1, sticky=(N, W, E, S))
-
 
         # Powerball Dates
         self.listbox1 = Listbox(root)
@@ -64,26 +64,17 @@ class Powerball:
         self.multiplier = ttk.Label(self.frame, text=str('Multiplier'))
         self.multiplier.grid(column=0, row=5, sticky=(N, W, E, S))
 
-        # Most common winning number
-        self.most_common_winning_number = ttk.Label(self.frame, text=str('Most common Winning Number'))
-        self.most_common_winning_number.grid(column=0, row=8, sticky=(N, W, E, S))
-        self.most_common_winning = ttk.Button(self.frame, text="MOST COMMON WINNING NUMBER", command=self.update_most_common_winning)
-        self.most_common_winning.grid(column=0, row=9, sticky=(N, W, E, S))
+        # Frequency Data Window
+        self.button_new_window = ttk.Button(self.frame, text="Common Winning Numbers", command=self.powerball_freq_window)
+        self.button_new_window.grid(column=0, row=12, sticky=(N, W, E, S))
 
         # Add a button to close the app
         self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
         self.button_close.grid(column=2, row=0, sticky=(N, W, E, S))
 
-    # Updates the label to hold the most common value over the years for a winning number
-    def update_most_common_winning(self):
-        count = 0
-        most_common = list_of_winning_numbers[0]
-        for i in list_of_winning_numbers:
-            curr_frequency = list_of_winning_numbers.count(i)
-            if(curr_frequency> count):
-                count = curr_frequency
-                most_common = i
-        self.most_common_winning_number.config(text=str(most_common))
+    # Powerball Frequency Graph Window
+    def powerball_freq_window(self):
+        os.system('python3 powerball_frequencies.py')
 
     # Updates the labels for data corresponding to the date in the list the user has selected
     def update(self):
