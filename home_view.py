@@ -2,9 +2,6 @@ import os
 from tkinter import *
 from tkinter import ttk
 
-
-
-
 class HomeView:
     
     def __init__(self, root):
@@ -38,9 +35,6 @@ class HomeView:
                                           text="EXIT", command=root.destroy)
         self.button_close.grid(column=0, row=3, sticky=(N, W, E, S))
         
-    # How to use different python files
-    # def test(self):
-    #     os.system('python3 test.py')
 
     # POWERBALL Window
     def powerball_window(self):
