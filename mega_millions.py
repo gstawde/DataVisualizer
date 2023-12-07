@@ -70,32 +70,23 @@ class Powerball:
         self.update_button = ttk.Button(self.frame, text="GET DATA", command=self.update)
         self.update_button.grid(column=0, row=7, sticky=(N, W, E, S))
 
-        # Most common winning number
-        self.most_common_winning_number = ttk.Label(self.frame, text=str('Most common Winning Number'))
-        self.most_common_winning_number.grid(column=0, row=8, sticky=(N, W, E, S))
-        self.most_common_winning = ttk.Button(self.frame, text="MOST COMMON WINNING NUMBER", command=self.update_most_common_winning)
-        self.most_common_winning.grid(column=0, row=9, sticky=(N, W, E, S))
-
         # Most common mega million number
-        self.most_common_mega_million = ttk.Label(self.frame, text=str('Most common Mega Million Number'))
-        self.most_common_mega_million.grid(column=0, row=10, sticky=(N, W, E, S))
+        self.most_common_mega_million = ttk.Label(self.frame, text=str('Most Common Mega Million Number'))
+        self.most_common_mega_million.grid(column=0, row=8, sticky=(N, W, E, S))
         self.most_common = ttk.Button(self.frame, text="MOST COMMON MEGA MILLION NUMBER", command=self.update_most_common_mega_million)
-        self.most_common.grid(column=0, row=11, sticky=(N, W, E, S))
+        self.most_common.grid(column=0, row=9, sticky=(N, W, E, S))
+
+        # Frequency Data Window
+        self.button_new_window = ttk.Button(self.frame, text="Common Winning Numbers", command=self.megamillions_freq_window)
+        self.button_new_window.grid(column=0, row=10, sticky=(N, W, E, S))
 
         # Add a button to close the app
         self.button_close = ttk.Button(self.frame, text="EXIT", command=root.destroy)
         self.button_close.grid(column=1, row=0, sticky=(N, W, E, S))
 
-    # Updates the label to hold the most common value over the years for a winning number
-    def update_most_common_winning(self):
-        count = 0
-        most_common = list_of_winning_numbers[0]
-        for i in list_of_winning_numbers:
-            curr_frequency = list_of_winning_numbers.count(i)
-            if(curr_frequency> count):
-                count = curr_frequency
-                most_common = i
-        self.most_common_winning_number.config(text=str(most_common))
+    # Mega Millions Frequency Graph Window
+    def megamillions_freq_window(self):
+        os.system('python3 megamillions_frequencies.py')
 
     # Updates the label to hold the most common value over the years for the mega million
     def update_most_common_mega_million(self):
@@ -106,7 +97,7 @@ class Powerball:
             if(curr_frequency> count):
                 count = curr_frequency
                 most_common = i
-        self.most_common_mega_million.config(text=str(most_common))
+        self.most_common_mega_million.config(text="Most Common Mega Million Number: " + str(most_common))
 
     # Updates the labels for data corresponding to the date in the list the user has selected
     def update(self):
