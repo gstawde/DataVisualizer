@@ -31,7 +31,6 @@ class Powerball:
         
         root.title("Powerball")
         root.geometry('700x450')
-
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
 
